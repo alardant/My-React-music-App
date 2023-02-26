@@ -6,14 +6,14 @@ const Wrapper = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: solid 1px;
+  background-color: ${props=>props.theme.mainColor};
 `
 
-const Footer = () => {
+const Footer = ({handleToggleTheme, isLight}) => {
   return (
-    <div>
-      <Wrapper>The footer</Wrapper>
-    </div>
+    <Wrapper>
+        <button onClick={handleToggleTheme}>Switch to {isLight ? 'light' : 'dark'} theme</button>
+    </Wrapper>
   )
 }
 

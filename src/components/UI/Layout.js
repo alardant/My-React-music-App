@@ -11,11 +11,11 @@ import Footer from '../Footer/Footer'
 const Wrapper = styled.div``
 
 const Main = styled.div`
-  min-height: calc(100vh - 194px);
+  min-height: calc(100vh - 162px);
   width : 96%;
   max-width: 1240px;
   margin : auto;
-  margin-top : 32px;
+  display: flex;
   `
 
 
@@ -31,11 +31,11 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={isLight ? lighTheme : darkTheme}>
       <Wrapper>
         <GlobalStyle />
-        <Header isLight={isLight} handleToggleTheme={handleToggleTheme} />
+        <Header/>
         <Main>
           {children}
         </Main>
-        <Footer />
+        <Footer isLight={isLight} handleToggleTheme={handleToggleTheme} />
       </Wrapper>
     </ThemeProvider>
   )

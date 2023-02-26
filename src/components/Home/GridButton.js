@@ -6,14 +6,14 @@ const Wrapper = styled.div`
   background-color: #058695;
   background: radial-gradient(
     circle, 
-    #058695 0%, 
-    #102f69 100%
+    #92cdd4 0%, 
+    #058695 100%
     );
     position: relative;
     overflow: hidden;
   &::before{
     position: absolute;
-    content: "";
+    content: '';
     top: 0;
     right: 0;
     bottom: 0;
@@ -21,10 +21,10 @@ const Wrapper = styled.div`
     z-index: 0;
     background: radial-gradient(
     circle, 
-    #df97b6 ${(props) => props.isPlayed ? '25%' : '0%'} 
-    #740b38 100%
+    #dec7d1 ${props => props.isPlayed ? '25%' : '0%'},
+    #d75c91 100%
     );
-    opacity: ${(props) => props.isPlayed ? '1' : '0'};
+    opacity: ${props => (props.isPlayed ? '1' : '0')};
     transition: linear 0.2s;
   }
   &:hover::before{
@@ -34,16 +34,29 @@ const Wrapper = styled.div`
     opacity: 1;
     background: radial-gradient(
     circle, 
-    #df97b6 25%, 
-    #740b38 100%
+    #dec7d1 25%, 
+    #d75c91 100%
     );
+  }
+  & input{
+    display: none;
+  }
+  & label{
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 24px;
   }
 `
 
-const GridButton = ({isPlayed = true}) => {
+
+const GridButton = ({ isPlayed = false, soundPlay, id, handleSampleChange }) => {
+
+
   return (
-    <Wrapper isPlayed={isPlayed}>
-      
+    <Wrapper isPlayed={isPlayed} onClick={soundPlay} >
+      <label onClick={e => e.stopPropagation()} htmlFor={id}>🎵</label>
+      <input onClick={e => e.stopPropagation()} id={id} type='file' onChange={handleSampleChange} />
     </Wrapper>
   )
 }
