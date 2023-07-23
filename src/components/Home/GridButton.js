@@ -50,11 +50,27 @@ const Wrapper = styled.div`
 `
 
 
-const GridButton = ({ isPlayed = false, soundPlay, id, handleSampleChange }) => {
+const GridButton = ({ isPlayed = false, soundPlay, id, handleSampleChange, buttonState, setButtonState }) => {
+  const handleClick = () => {
+    // Check if the button is already in the buttonState array
+    const existingButton = buttonState.find(button => button.id === id);
 
+    // If the button is not present in the state, add it with the isPlayed value
+    if (!existingButton) {
+      setButtonState(prevState => [...prevState, { id, isPlayed: true }]);
+    } else {
+      // If the button is already present, toggle the isPlayed value
+      setButtonState(prevState =>
+        prevState.map(button => (button.id === id ? { ...button, isPlayed: !button.isPlayed } : button))
+      );
+    }
+
+    // Call the soundPlay function
+    soundPlay();
+  };
 
   return (
-    <Wrapper isPlayed={isPlayed} onClick={soundPlay} >
+    <Wrapper isPlayed={isPlayed} onClick={handleClick} >
       <label onClick={e => e.stopPropagation()} htmlFor={id}>🎵</label>
       <input onClick={e => e.stopPropagation()} id={id} type='file' onChange={handleSampleChange} />
     </Wrapper>

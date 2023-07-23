@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import GridButton from './GridButton'
+import GridButton from './GridButton';
 import useSounds from '../../hooks/useSounds'
 
 
@@ -33,9 +33,9 @@ const Grid = styled.div`
   }
   `
 
-const Home = () => {
+const Home = ({ buttonState, setButtonState }) => {
 
-  const { buttonList } = useSounds()
+  const { buttonList } = useSounds();
 
   return (
     <Wrapper>
@@ -48,6 +48,8 @@ const Home = () => {
               isPlayed={isPlayed}
               id={id}
               handleSampleChange={handleSampleChange}
+              buttonState={buttonState}
+              setButtonState={setButtonState}
             />)
         })}
       </Grid>
